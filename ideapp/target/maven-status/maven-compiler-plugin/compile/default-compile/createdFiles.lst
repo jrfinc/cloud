@@ -1,4 +1,5 @@
 com/br/ideapp/Idea.class
+com/br/ideapp/SubmitCommentServlet.class
 com/br/ideapp/Comment.class
 com/br/ideapp/ListIdeasServlet.class
 com/br/ideapp/SubmitIdeaServlet.class

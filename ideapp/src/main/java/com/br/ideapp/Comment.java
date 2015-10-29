@@ -43,4 +43,12 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public Key<Idea> getParentKey() {
+        return parentKey;
+    }
+
+    public void setParentKey(Key<Idea> parentKey) {
+        this.parentKey = parentKey;
+    }
 }

@@ -5,10 +5,18 @@
         <servlet-name>submitIdea</servlet-name>
         <servlet-class>com.br.ideapp.SubmitIdeaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>submitComment</servlet-name>
+        <servlet-class>com.br.ideapp.SubmitCommentServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>submitIdea</servlet-name>
         <url-pattern>/submitIdea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>submitComment</servlet-name>
+        <url-pattern>/submitComment</url-pattern>
     </servlet-mapping>
 
 

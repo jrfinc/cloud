@@ -40,7 +40,8 @@
 %>
     <p><b><%= ideaContent%></b></p>
 <%
-    List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
+    //List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
+    List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).list();
     for (Comment c : comments) {
         String commentContent = c.getContent();
 %>
@@ -49,9 +50,9 @@
     }
 %>
 
-<form action="/submitIdea" method="post">
+<form action="/submitComment" method="post">
     <div><textarea name="content" rows="3" cols="60"></textarea></div>
-    <div><input type="submit" value="Subir Idea" /></div>
+    <div><input type="submit" value="Subir Comentario" /></div>
 </form>
 
 </body>
