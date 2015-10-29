@@ -23,15 +23,20 @@ public class SubmitCommentServlet extends HttpServlet {
         User user = userService.getCurrentUser();
 
         String content;
+        Long ideaId;
         if (user == null) {
             resp.sendError(1,"NO HAY USUARIO LOGUEADO");
         } else {
             content = req.getParameter("content");
+            ideaId = new Long(req.getParameter("ideaId"));
+            Key<Idea> ideaKey = Key.create(Idea.class, ideaId);
             Comment comment = new Comment();
             comment.setAuthor_id(user.getUserId());
             comment.setContent(content);
+            comment.setParentKey(ideaKey);
             ObjectifyService.ofy().save().entity(comment).now();
-            resp.setHeader("Refresh", "3");
+            String url = "/ideaDetail.jsp?ideaId=" + ideaId;
+            resp.sendRedirect(url);
         }
 
     }

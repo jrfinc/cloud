@@ -30,7 +30,8 @@ public class SubmitIdeaServlet extends HttpServlet {
             idea.setContent(content);
             idea.setAuthor_id(user.getUserId());
             ObjectifyService.ofy().save().entity(idea).now();
-            resp.sendRedirect("http://google.com");
+            String url = "/ideaLibrary.jsp";
+            resp.sendRedirect(url);
         }
 
     }
