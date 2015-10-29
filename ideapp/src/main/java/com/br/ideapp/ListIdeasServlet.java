@@ -1,5 +1,6 @@
 package com.br.ideapp;
 
+import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ public class ListIdeasServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //validar que el usuario este logueado.
         List<Idea> ideas = ObjectifyService.ofy().load().type(Idea.class).order("-date").list();
+
         req.setAttribute("ideas", ideas); // Will be available as ${products} in JSP
         req.getRequestDispatcher("ideaLibrary.jsp").forward(req, resp);
 

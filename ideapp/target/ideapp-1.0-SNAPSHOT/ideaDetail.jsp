@@ -4,6 +4,7 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%@ page import="com.br.ideapp.Idea" %>
+<%@ page import="com.br.ideapp.Comment" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -32,13 +33,18 @@
 <%
     }
 
-List<Idea> ideas = ObjectifyService.ofy().load().type(Idea.class).order("-date").list();
-for (Idea idea : ideas) {
-    pageContext.setAttribute("idea_content", idea.getContent());
-    String url = "ideaDetail.jsp?ideaId=" + idea.getId();
-%>
+    Long ideaId = new Long(request.getParameter("ideaId"));
+    Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
+    String ideaContent = idea.getContent();
 
-    <a href='<%= url%>'><blockquote>${fn:escapeXml(idea_content)}</blockquote></a>
+%>
+    <p><b><%= ideaContent%></b></p>
+<%
+    List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
+    for (Comment c : comments) {
+        String commentContent = c.getContent();
+%>
+     <p><%= commentContent%></p>
 <%
     }
 %>

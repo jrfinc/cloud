@@ -1,7 +1,9 @@
 package com.br.ideapp;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Parent;
 
 /**
  * Created by jr on 10/15/15.
@@ -15,6 +17,9 @@ public class Comment {
     private String author_id;
 
     private String content;
+
+    @Parent
+    Key<Idea> parentKey;
 
     public Comment() {
     }

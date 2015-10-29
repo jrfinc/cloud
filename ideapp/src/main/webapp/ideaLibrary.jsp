@@ -35,8 +35,10 @@
 List<Idea> ideas = ObjectifyService.ofy().load().type(Idea.class).order("-date").list();
 for (Idea idea : ideas) {
     pageContext.setAttribute("idea_content", idea.getContent());
+    String url = "ideaDetail.jsp?ideaId=" + idea.getId();
 %>
-    <blockquote>${fn:escapeXml(idea_content)}</blockquote>
+
+    <a href='<%= url%>'><blockquote>${fn:escapeXml(idea_content)}</blockquote></a>
 <%
     }
 %>
