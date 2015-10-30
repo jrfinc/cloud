@@ -19,7 +19,6 @@ public class Idea {
     @Index
     private String author_id;
     private String content;
-    private List<Comment> commentsList;
 
     @Index
     private Date date;
@@ -45,14 +44,6 @@ public class Idea {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public List<Comment> getCommentsList() {
-        return commentsList;
-    }
-
-    public void setCommentsList(List<Comment> commentsList) {
-        this.commentsList = commentsList;
     }
 
     public Date getDate() {

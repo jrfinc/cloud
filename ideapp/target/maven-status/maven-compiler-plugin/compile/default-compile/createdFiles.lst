@@ -1,6 +1,8 @@
+com/br/ideapp/SubmitVoteServlet.class
 com/br/ideapp/Idea.class
-com/br/ideapp/SubmitCommentServlet.class
-com/br/ideapp/Comment.class
 com/br/ideapp/ListIdeasServlet.class
 com/br/ideapp/SubmitIdeaServlet.class
+com/br/ideapp/SubmitCommentServlet.class
+com/br/ideapp/Vote.class
+com/br/ideapp/Comment.class
 com/br/ideapp/ObjectifyHelper.class

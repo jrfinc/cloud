@@ -13,6 +13,7 @@ public class ObjectifyHelper implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ObjectifyService.register(Idea.class);
         ObjectifyService.register(Comment.class);
+        ObjectifyService.register(Vote.class);
     }
 
     @Override

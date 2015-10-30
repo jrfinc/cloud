@@ -5,6 +5,7 @@
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%@ page import="com.br.ideapp.Idea" %>
 <%@ page import="com.br.ideapp.Comment" %>
+<%@ page import="com.br.ideapp.Vote" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -36,9 +37,13 @@
     Long ideaId = new Long(request.getParameter("ideaId"));
     Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
     String ideaContent = idea.getContent();
+    String ideaAuthor = idea.getAuthor_id();
 
 %>
-    <p><b><%= ideaContent%></b></p>
+    <p>
+    <b><%= ideaContent%></b>
+    <%= ideaAuthor%>
+    </p>
 <%
     List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
     for (Comment c : comments) {
@@ -47,7 +52,21 @@
      <p><%= commentContent%></p>
 <%
     }
+    String voteId = ideaId + "-" + user.getNickname();
+    Vote vote = ObjectifyService.ofy().load().type(Vote.class).id(voteId).now();
 %>
+
+<form action="/submitVote" method="post">
+    <div><input type="submit" value="+1" /></div>
+    <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+    <input type="hidden" name="vote" value='1'/>
+</form>
+<form action="/submitVote" method="post">
+    <div><input type="submit" value="-1" /></div>
+    <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+    <input type="hidden" name="vote" value='-1'/>
+</form>
+
 
 <form action="/submitComment" method="post">
     <div><textarea name="content" rows="3" cols="60"></textarea></div>

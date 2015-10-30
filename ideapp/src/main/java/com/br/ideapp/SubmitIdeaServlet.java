@@ -28,7 +28,7 @@ public class SubmitIdeaServlet extends HttpServlet {
             content = req.getParameter("content");
             Idea idea = new Idea();
             idea.setContent(content);
-            idea.setAuthor_id(user.getUserId());
+            idea.setAuthor_id(user.getNickname());
             ObjectifyService.ofy().save().entity(idea).now();
             String url = "/ideaLibrary.jsp";
             resp.sendRedirect(url);
