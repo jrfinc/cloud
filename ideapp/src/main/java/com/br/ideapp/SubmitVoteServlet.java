@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by matiii79 on 10/29/15.
@@ -29,7 +30,9 @@ public class SubmitVoteServlet  extends HttpServlet {
             voteNumber = Integer.parseInt(req.getParameter("vote"));
             ideaId = new Long(req.getParameter("ideaId"));
             Vote vote = new Vote(ideaId, user.getNickname(), voteNumber);
-            ObjectifyService.ofy().save().entity(vote).now();
+            Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
+            idea.addVote(voteNumber);
+            ObjectifyService.ofy().save().entities(Arrays.asList(vote, idea)).now();
             String url = "/ideaDetail.jsp?ideaId=" + ideaId;
             resp.sendRedirect(url);
         }

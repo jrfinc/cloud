@@ -38,11 +38,8 @@
     Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
     String ideaContent = idea.getContent();
     String ideaAuthor = idea.getAuthor_id();
-    List<Vote> votes = ObjectifyService.ofy().load().type(Vote.class).filter("ideaId", ideaId).list();
-    int score = 0;
-    for (Vote v : votes) {
-        score += v.getVote();
-    }
+    int score = idea.getScore();
+    
 %>
     <p>
     <h1><%= ideaContent%></h1><br>

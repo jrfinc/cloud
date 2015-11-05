@@ -31,9 +31,19 @@
     to submit ideas.</p>
 <%
     }
+%>
 
-List<Idea> ideas = ObjectifyService.ofy().load().type(Idea.class).order("-date").list();
-for (Idea idea : ideas) {
+<form action="/submitIdea" method="post">
+    <div><textarea name="content" rows="3" cols="60"></textarea></div>
+    <div><input type="submit" value="Subir Idea" /></div>
+</form>
+
+<h1>Últimas ideas</h1>
+
+<%
+
+List<Idea> lastIdeas = ObjectifyService.ofy().load().type(Idea.class).order("-date").limit(5).list();
+for (Idea idea : lastIdeas) {
     pageContext.setAttribute("idea_content", idea.getContent());
     String url = "ideaDetail.jsp?ideaId=" + idea.getId();
 %>
@@ -43,10 +53,21 @@ for (Idea idea : ideas) {
     }
 %>
 
-<form action="/submitIdea" method="post">
-    <div><textarea name="content" rows="3" cols="60"></textarea></div>
-    <div><input type="submit" value="Subir Idea" /></div>
-</form>
+
+<h1>Ideas más exitosas</h1>
+
+<%
+
+List<Idea> famousIdeas = ObjectifyService.ofy().load().type(Idea.class).order("-score").limit(5).list();
+for (Idea idea : famousIdeas) {
+    pageContext.setAttribute("idea_content", idea.getContent());
+    String url = "ideaDetail.jsp?ideaId=" + idea.getId();
+%>
+
+    <a href='<%= url%>'><blockquote>${fn:escapeXml(idea_content)}</blockquote></a>
+<%
+    }
+%>
 
 </body>
 </html>

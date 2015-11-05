@@ -23,6 +23,9 @@ public class Idea {
     @Index
     private Date date;
 
+    @Index
+    private int score;
+
     public Idea() {
     }
 
@@ -53,4 +56,10 @@ public class Idea {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public void addVote(int vote) {
+        this.score += vote;
+    }
+
+    public int getScore() { return score; }
 }
