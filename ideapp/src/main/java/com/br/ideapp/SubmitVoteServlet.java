@@ -14,7 +14,7 @@ import java.util.Arrays;
 /**
  * Created by matiii79 on 10/29/15.
  */
-public class SubmitVoteServlet  extends HttpServlet {
+public class SubmitVoteServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

@@ -39,7 +39,7 @@
     String ideaContent = idea.getContent();
     String ideaAuthor = idea.getAuthor_id();
     int score = idea.getScore();
-    
+
 %>
     <p>
     <h1><%= ideaContent%></h1><br>

@@ -38,6 +38,11 @@
     <div><input type="submit" value="Subir Idea" /></div>
 </form>
 
+<form action="/newsletter" method="post">
+    <div><textarea name="content" rows="3" cols="60"></textarea></div>
+    <div><input type="submit" value="Mandar mail" /></div>
+</form>
+
 <h1>Últimas ideas</h1>
 
 <%
