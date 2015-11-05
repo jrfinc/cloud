@@ -32,7 +32,7 @@ public class SubmitCommentServlet extends HttpServlet {
             ideaId = new Long(req.getParameter("ideaId"));
             Key<Idea> ideaKey = Key.create(Idea.class, ideaId);
             Comment comment = new Comment();
-            comment.setAuthor_id(user.getUserId());
+            comment.setAuthor_id(user.getNickname());
             comment.setContent(content);
             comment.setParentKey(ideaKey);
             ObjectifyService.ofy().save().entity(comment).now();

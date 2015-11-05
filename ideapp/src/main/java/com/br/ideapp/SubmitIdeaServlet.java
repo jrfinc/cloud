@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by jr on 10/15/15.
@@ -23,15 +24,20 @@ public class SubmitIdeaServlet extends HttpServlet {
 
         String content;
         if (user == null) {
-            resp.sendError(1,"NO HAY USUARIO LOGUEADO");
+            resp.sendError(1, "NO HAY USUARIO LOGUEADO");
         } else {
             content = req.getParameter("content");
-            Idea idea = new Idea();
-            idea.setContent(content);
-            idea.setAuthor_id(user.getNickname());
-            ObjectifyService.ofy().save().entity(idea).now();
-            String url = "/ideaLibrary.jsp";
-            resp.sendRedirect(url);
+            if (content.isEmpty()) {
+                resp.sendError(2, "Una idea no puede ser vacía");
+            } else {
+                Idea idea = new Idea();
+                idea.setContent(content);
+                idea.setAuthor_id(user.getNickname());
+                idea.setDate(new Date());
+                ObjectifyService.ofy().save().entity(idea).now();
+                String url = "/ideaLibrary.jsp";
+                resp.sendRedirect(url);
+            }
         }
 
     }

@@ -4,6 +4,7 @@ import com.google.appengine.api.users.User;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 /**
  * Created by matiii79 on 10/29/15.
@@ -14,6 +15,7 @@ public class Vote {
     @Id
     private String id;
 
+    @Index
     private Long ideaId;
 
     private String userId;

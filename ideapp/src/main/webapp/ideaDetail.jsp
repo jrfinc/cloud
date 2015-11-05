@@ -38,18 +38,29 @@
     Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
     String ideaContent = idea.getContent();
     String ideaAuthor = idea.getAuthor_id();
-
+    List<Vote> votes = ObjectifyService.ofy().load().type(Vote.class).filter("ideaId", ideaId).list();
+    int score = 0;
+    for (Vote v : votes) {
+        score += v.getVote();
+    }
 %>
     <p>
-    <b><%= ideaContent%></b>
-    <%= ideaAuthor%>
+    <h1><%= ideaContent%></h1><br>
+    <b>Autor:</b> <%= ideaAuthor%><br>
+    <b>Puntaje:</b> <%= score%>
     </p>
 <%
     List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
+    if (comments.size() > 0) {
+        %>
+        <h3>Comentarios:</h3><br>
+        <%
+    }
     for (Comment c : comments) {
         String commentContent = c.getContent();
+        String commentAuthor = c.getAuthor_id();
 %>
-     <p><%= commentContent%></p>
+     <p><%= commentContent%> <i><%= commentAuthor%></i></p>
 <%
     }
     if (user != null) {
