@@ -52,8 +52,10 @@
      <p><%= commentContent%></p>
 <%
     }
-    String voteId = ideaId + "-" + user.getNickname();
-    Vote vote = ObjectifyService.ofy().load().type(Vote.class).id(voteId).now();
+    if (user != null) {
+        String voteId = ideaId + "-" + user.getNickname();
+        boolean existsVote = ObjectifyService.ofy().load().type(Vote.class).filter("id", voteId).count() != 0;
+        if (!existsVote) {
 %>
 
 <form action="/submitVote" method="post">
@@ -67,6 +69,10 @@
     <input type="hidden" name="vote" value='-1'/>
 </form>
 
+<%
+        }
+    }
+%>
 
 <form action="/submitComment" method="post">
     <div><textarea name="content" rows="3" cols="60"></textarea></div>
