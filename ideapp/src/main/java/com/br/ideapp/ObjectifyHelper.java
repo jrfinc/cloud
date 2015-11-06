@@ -14,6 +14,7 @@ public class ObjectifyHelper implements ServletContextListener {
         ObjectifyService.register(Idea.class);
         ObjectifyService.register(Comment.class);
         ObjectifyService.register(Vote.class);
+        ObjectifyService.register(Subscriber.class);
     }
 
     @Override

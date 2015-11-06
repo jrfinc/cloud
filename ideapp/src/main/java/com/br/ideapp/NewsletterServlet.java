@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 
 public class NewsletterServlet extends HttpServlet {
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         InternetAddress from = new InternetAddress("noreply@ideapp-2015.appspotmail.com", "Ideapp") ;
 
@@ -35,13 +36,10 @@ public class NewsletterServlet extends HttpServlet {
         try {
             Message msg = new MimeMessage(session);
             msg.setFrom(from);
-            msg.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress("josefinarevilla@gmail.com", "Peti"));
             addRecipients(msg);
             msg.setSubject("Mejores ideas de la semana");
             msg.setText(msgBody);
             Transport.send(msg);
-            resp.sendRedirect("/ideaLibrary.jsp");
         } catch (AddressException e) {
             resp.sendRedirect("address");
         } catch (MessagingException e) {
@@ -60,7 +58,11 @@ public class NewsletterServlet extends HttpServlet {
         return body;
     }
 
-    private void addRecipients(Message msg) {
-        // TODO: Obtengo los usuarios suscriptos y los agregos como recipients
+    private void addRecipients(Message msg) throws UnsupportedEncodingException, MessagingException {
+        List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
+        for (Subscriber s : subscribers) {
+            msg.addRecipient(Message.RecipientType.BCC, new InternetAddress(s.getMailAddress(), s.getNickname()));
+        }
+
     }
 }

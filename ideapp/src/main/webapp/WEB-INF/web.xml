@@ -17,6 +17,10 @@
         <servlet-name>newsletter</servlet-name>
         <servlet-class>com.br.ideapp.NewsletterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>subscribe</servlet-name>
+        <servlet-class>com.br.ideapp.SubmitSubscriberServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>submitIdea</servlet-name>
@@ -34,7 +38,10 @@
         <servlet-name>newsletter</servlet-name>
         <url-pattern>/newsletter</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>subscribe</servlet-name>
+        <url-pattern>/subscribe</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>ideaLibrary.jsp</welcome-file>

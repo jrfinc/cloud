@@ -4,6 +4,7 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%@ page import="com.br.ideapp.Idea" %>
+<%@ page import="com.br.ideapp.Subscriber" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -24,6 +25,17 @@
 <p>Hello, ${fn:escapeXml(user.nickname)}! (You can
     <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 <%
+        String email = user.getEmail();
+        boolean existsSubscription = ObjectifyService.ofy().load().type(Subscriber.class).id(email).now() != null;
+        if (!existsSubscription) {
+%>
+
+        <form action="/subscribe" method="post">
+            <div><input type="submit" value="Suscribirse al newsletter semanal!" /></div>
+        </form>
+
+<%
+        }
     } else {
 %>
 <p>Hello!
@@ -36,11 +48,6 @@
 <form action="/submitIdea" method="post">
     <div><textarea name="content" rows="3" cols="60"></textarea></div>
     <div><input type="submit" value="Subir Idea" /></div>
-</form>
-
-<form action="/newsletter" method="post">
-    <div><textarea name="content" rows="3" cols="60"></textarea></div>
-    <div><input type="submit" value="Mandar mail" /></div>
 </form>
 
 <h1>Últimas ideas</h1>
