@@ -26,31 +26,45 @@
     <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                  <a class="navbar-brand" href="" >Ideapp</a>
+              <a class="navbar-brand" href="" >Ideapp</a>
+            </div>
                         <%
                             UserService userService = UserServiceFactory.getUserService();
                             User user = userService.getCurrentUser();
                             if (user != null) {
                                 pageContext.setAttribute("user", user);
                         %>
-            </div>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-
-                    <a><span class="label label-default">Hello, ${fn:escapeXml(user.nickname)}!
-                        <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>
-                    </span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Hello,${fn:escapeXml(user.nickname)}!<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">
+                                <i class="fa fa-fw fa-user"></i>
+                                Sign Out
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
                             <%
                                 } else {
                             %>
-                    <a><span class="label label-default">Hello!
-                        <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-                        to submit ideas.
-                    </span></a>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Hello, Guest!<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
+                                <i class="fa fa-fw fa-user"></i>
+                                Sign In
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                             <%
                                }
                             %>
-                </li>
             </ul>
         </nav>
 
