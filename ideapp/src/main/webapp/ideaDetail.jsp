@@ -141,7 +141,9 @@
                 <%
                     }
                     else {
-                        //redirect to ideaLibrary
+                %>
+                        <jsp:forward page = "ideaLibrary.jsp" />
+                <%
                     }
                 %>
 
