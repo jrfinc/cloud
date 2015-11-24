@@ -66,7 +66,16 @@
                                }
                             %>
             </ul>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="/ideaLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Listado de Ideas</a>
+                    </li>
+                </ul>
+            </div>
+
         </nav>
+
 
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -128,7 +137,7 @@
                 </form>
 
 
-                <a href="/ideaLibrary.jsp">Listado de ideas</a></p>
+                </p>
 
             </div>
         </div>
