@@ -117,12 +117,12 @@
 
                 <table>
                     <form action="/submitVote" method="post">
-                        <button type="button" class = "btn btn-success"> +1 </button>
+                        <div><input type="submit"  class = "btn btn-success" value="+1" /></div>
                         <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                         <input type="hidden" name="vote" value='1'/>
                     </form>
                     <form action="/submitVote" method="post">
-                        <button type="button" class = "btn btn-danger"> -1 </button>
+                        <div><input type="submit"  class = "btn btn-danger" value="-1" /></div>
                         <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                         <input type="hidden" name="vote" value='-1'/>
                     </form>
@@ -135,13 +135,13 @@
                                 %>
                 <form action="/submitComment" method="post">
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
-                    <button type="button" class = "btn btn-primary">Subir Comentario</button>
+                    <div><input type="submit"  class = "btn btn-primary" value="Subir Comentario" /></div>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>
                 <%
                     }
                     else {
-                        //redirect to ideaLibrary 
+                        //redirect to ideaLibrary
                     }
                 %>
 

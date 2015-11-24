@@ -95,7 +95,7 @@
 
                             <form action="/submitIdea" method="post">
                                 <div><textarea name="content" rows="3" cols="60"></textarea></div>
-                                <button type="button" class = "btn btn-primary">Subir Idea</button>
+                                <div><input type="submit"  class = "btn btn-primary" value="Subir Idea" /></div>
                             </form>
 
                             <h1>Últimas ideas</h1>
