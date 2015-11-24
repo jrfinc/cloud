@@ -114,30 +114,28 @@
                                     if (!existsVote) {
                             %>
 
-                <form action="/submitVote" method="post">
-                    <div><input type="submit" value="+1" /></div>
-                    <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
-                    <input type="hidden" name="vote" value='1'/>
-                </form>
-                <form action="/submitVote" method="post">
-                    <div><input type="submit" value="-1" /></div>
-                    <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
-                    <input type="hidden" name="vote" value='-1'/>
-                </form>
+                <table>
+                    <form action="/submitVote" method="post">
+                        <button type="button" class = "btn btn-success"> +1 </button>
+                        <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+                        <input type="hidden" name="vote" value='1'/>
+                    </form>
+                    <form action="/submitVote" method="post">
+                        <button type="button" class = "btn btn-danger"> -1 </button>
+                        <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+                        <input type="hidden" name="vote" value='-1'/>
+                    </form>
+                </table>
 
                                 <%
                                         }
                                     }
                                 %>
-
                 <form action="/submitComment" method="post">
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
-                    <div><input type="submit" value="Subir Comentario" /></div>
+                    <button type="button" class = "btn btn-primary">Subir Comentario</button>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>
-
-
-                </p>
 
             </div>
         </div>
