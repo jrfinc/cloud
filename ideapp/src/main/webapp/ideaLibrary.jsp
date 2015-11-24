@@ -35,6 +35,7 @@
                                     pageContext.setAttribute("user", user);
                                     String email = user.getEmail();
                                     existsSubscription = ObjectifyService.ofy().load().type(Subscriber.class).id(email).now() != null;
+
                             %>
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">

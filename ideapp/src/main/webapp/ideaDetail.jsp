@@ -82,11 +82,12 @@
 
                     <%
 
-                        Long ideaId = new Long(request.getParameter("ideaId"));
-                        Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
-                        String ideaContent = idea.getContent();
-                        String ideaAuthor = idea.getAuthor_id();
-                        int score = idea.getScore();
+                        if (request.getParameter("ideaId") != null) {
+                            Long ideaId = new Long(request.getParameter("ideaId"));
+                            Idea idea = ObjectifyService.ofy().load().type(Idea.class).id(ideaId).now();
+                            String ideaContent = idea.getContent();
+                            String ideaAuthor = idea.getAuthor_id();
+                            int score = idea.getScore();
 
                     %>
                 <p>
@@ -130,12 +131,19 @@
                                 <%
                                         }
                                     }
+
                                 %>
                 <form action="/submitComment" method="post">
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
                     <button type="button" class = "btn btn-primary">Subir Comentario</button>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>
+                <%
+                    }
+                    else {
+                        //redirect to ideaLibrary 
+                    }
+                %>
 
             </div>
         </div>
