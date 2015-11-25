@@ -19,7 +19,6 @@
         <link href="stylesheets/css/sb-admin.css" rel="stylesheet">
         <link href="stylesheets/css/plugins/morris.css" rel="stylesheet">
         <link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <title>Ideapp</title>
     </head>
 
     <body>
@@ -31,7 +30,7 @@
                             <%
                                 UserService userService = UserServiceFactory.getUserService();
                                 User user = userService.getCurrentUser();
-                                boolean existsSubscription = false;
+                                boolean existsSubscription = true;
                                 if (user != null) {
                                     pageContext.setAttribute("user", user);
                                     String email = user.getEmail();
@@ -56,7 +55,8 @@
                                 %>
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Hello, Guest!<b class="caret"></b></a>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Hello, Guest!<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
@@ -132,6 +132,8 @@
                 </div>
             </div>
         </div>
+            <script src="stylesheets/js/jquery.js"></script>
+            <script src="stylesheets/js/bootstrap.min.js"></script>
     </body>
 </html>
 
