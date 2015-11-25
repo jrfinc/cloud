@@ -25,7 +25,7 @@ public class SubmitVoteServlet extends HttpServlet {
         int voteNumber;
         Long ideaId;
         if (user == null) {
-            resp.sendError(1,"NO HAY USUARIO LOGUEADO");
+            resp.sendError(500,"Debe estar logeado para votar una idea");
         } else {
             voteNumber = Integer.parseInt(req.getParameter("vote"));
             ideaId = new Long(req.getParameter("ideaId"));

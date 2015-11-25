@@ -47,6 +47,11 @@
         <welcome-file>ideaLibrary.jsp</welcome-file>
     </welcome-file-list>
 
+    <error-page>
+        <error-code>500</error-code>
+        <location>/failure.jsp</location>
+    </error-page>
+
     <filter>
         <filter-name>ObjectifyFilter</filter-name>
         <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>

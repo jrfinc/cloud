@@ -19,7 +19,7 @@ public class SubmitSubscriberServlet extends HttpServlet {
         User user = userService.getCurrentUser();
 
         if (user == null) {
-            resp.sendError(1, "NO HAY USUARIO LOGUEADO");
+            resp.sendError(500,"Debe estar logeado para suscribirse al newsletter");
         } else {
             Subscriber suscriber = new Subscriber();
             suscriber.setMailAddress(user.getEmail());

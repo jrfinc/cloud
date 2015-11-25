@@ -26,19 +26,22 @@ public class SubmitCommentServlet extends HttpServlet {
         String content;
         Long ideaId;
         if (user == null) {
-            resp.sendError(1,"NO HAY USUARIO LOGUEADO");
+            resp.sendError(500,"Debe estar logeado para ingresar comentarios");
         } else {
             content = req.getParameter("content");
-            ideaId = new Long(req.getParameter("ideaId"));
-            Key<Idea> ideaKey = Key.create(Idea.class, ideaId);
-            Comment comment = new Comment();
-            comment.setAuthor_id(user.getNickname());
-            comment.setContent(content);
-            comment.setParentKey(ideaKey);
-            ObjectifyService.ofy().save().entity(comment).now();
-            String url = "/ideaDetail.jsp?ideaId=" + ideaId;
-            resp.sendRedirect(url);
+            if (content.isEmpty()) {
+                resp.sendError(500, "Una idea no puede ser vacía");
+            } else {
+                ideaId = new Long(req.getParameter("ideaId"));
+                Key<Idea> ideaKey = Key.create(Idea.class, ideaId);
+                Comment comment = new Comment();
+                comment.setAuthor_id(user.getNickname());
+                comment.setContent(content);
+                comment.setParentKey(ideaKey);
+                ObjectifyService.ofy().save().entity(comment).now();
+                String url = "/ideaDetail.jsp?ideaId=" + ideaId;
+                resp.sendRedirect(url);
+            }
         }
-
     }
 }

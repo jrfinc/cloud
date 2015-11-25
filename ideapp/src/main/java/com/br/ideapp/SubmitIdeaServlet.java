@@ -24,11 +24,11 @@ public class SubmitIdeaServlet extends HttpServlet {
 
         String content;
         if (user == null) {
-            resp.sendError(1, "NO HAY USUARIO LOGUEADO");
+            resp.sendError(500,"Debe estar logeado para ingresar ideas");
         } else {
             content = req.getParameter("content");
             if (content.isEmpty()) {
-                resp.sendError(2, "Una idea no puede ser vacía");
+                resp.sendError(500, "Una idea no puede ser vacía");
             } else {
                 Idea idea = new Idea();
                 idea.setContent(content);
