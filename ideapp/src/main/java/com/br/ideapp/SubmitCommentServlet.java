@@ -30,7 +30,7 @@ public class SubmitCommentServlet extends HttpServlet {
         } else {
             content = req.getParameter("content");
             if (content.isEmpty()) {
-                resp.sendError(500, "Una idea no puede ser vacía");
+                resp.sendError(500, "Un comentario no puede ser vacío");
             } else {
                 ideaId = new Long(req.getParameter("ideaId"));
                 Key<Idea> ideaKey = Key.create(Idea.class, ideaId);
