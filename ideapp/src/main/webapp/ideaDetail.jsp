@@ -20,7 +20,7 @@
     <link href="stylesheets/css/sb-admin.css" rel="stylesheet">
     <link href="stylesheets/css/plugins/morris.css" rel="stylesheet">
     <link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <title>Ideapp</title>
+    <title>Idea</title>
 </head>
 
 <body>

@@ -19,6 +19,7 @@
         <link href="stylesheets/css/sb-admin.css" rel="stylesheet">
         <link href="stylesheets/css/plugins/morris.css" rel="stylesheet">
         <link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <title>Listado de ideas</title>
     </head>
 
     <body>
@@ -52,22 +53,9 @@
                 </ul>
                                 <%
                                     } else {
-                                %>
-                <ul class="nav navbar-right top-nav">
-                    <li class="dropdown">
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Hello, Guest!<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
-                                    <i class="fa fa-fw fa-user"></i>
-                                    Sign In
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                                <%
-                                   }
+                                        String redirectURL = userService.createLoginURL(request.getRequestURI());
+                                        response.sendRedirect(redirectURL);
+                                    }
                                 %>
                 </ul>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
