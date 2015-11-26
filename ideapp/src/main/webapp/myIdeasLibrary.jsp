@@ -74,17 +74,17 @@
                         <li>
                             <a href="/uploadIdea.jsp"><i class="fa fa-fw fa-dashboard"></i> Subir idea</a>
                         </li>
-                            <%
-                                if (!existsSubscription) {
-                            %>
+                        <%
+                            if (!existsSubscription) {
+                        %>
                         <li>
                             <form action="/subscribe" method="post" class="fa fa-fw fa-dashboard">
-                                <div><input type="submit" value="Suscribirse al newsletter semanal!" /></div>
+                                <div><input type="submit" class="btn btn-info" value="Suscribirse al newsletter" /></div>
                             </form>
                         </li>
-                            <%
-                                }
-                            %>
+                        <%
+                            }
+                        %>
                     </ul>
                 </div>
             </nav>

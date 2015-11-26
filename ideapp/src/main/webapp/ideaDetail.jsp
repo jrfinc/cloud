@@ -6,6 +6,7 @@
 <%@ page import="com.br.ideapp.Idea" %>
 <%@ page import="com.br.ideapp.Comment" %>
 <%@ page import="com.br.ideapp.Vote" %>
+<%@ page import="com.br.ideapp.Subscriber" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -32,8 +33,11 @@
                         <%
                             UserService userService = UserServiceFactory.getUserService();
                             User user = userService.getCurrentUser();
+                            boolean existsSubscription = true;
                             if (user != null) {
                                 pageContext.setAttribute("user", user);
+                                String email = user.getEmail();
+                                existsSubscription = ObjectifyService.ofy().load().type(Subscriber.class).id(email).now() != null;
                         %>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
@@ -81,6 +85,17 @@
                     <li>
                         <a href="/uploadIdea.jsp"><i class="fa fa-fw fa-dashboard"></i> Subir idea</a>
                     </li>
+                    <%
+                        if (!existsSubscription) {
+                    %>
+                    <li>
+                        <form action="/subscribe" method="post" class="fa fa-fw fa-dashboard">
+                            <div><input type="submit" class="btn btn-info" value="Suscribirse al newsletter" /></div>
+                        </form>
+                    </li>
+                    <%
+                        }
+                    %>
                 </ul>
             </div>
 
