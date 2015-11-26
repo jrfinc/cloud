@@ -105,11 +105,41 @@
                     <b>Autor:</b> <%= ideaAuthor%><br>
                     <b>Puntaje:</b> <%= score%>
                 </p>
-                    <%
+
+                <%
+               if (user != null) {
+                    String voteId = ideaId + "-" + user.getNickname();
+                    boolean existsVote = ObjectifyService.ofy().load().type(Vote.class).filter("id", voteId).count() != 0;
+                    if (!existsVote) {
+                 %>
+
+                    <table>
+                       <tr>
+                        <td>
+                            <form action="/submitVote" method="post">
+                                <div><input type="submit"  class = "btn btn-success" value="+1" /></div>
+                                <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+                                <input type="hidden" name="vote" value='1'/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/submitVote" method="post">
+                                <div><input type="submit"  class = "btn btn-danger" value="-1" /></div>
+                                <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
+                                <input type="hidden" name="vote" value='-1'/>
+                            </form>
+                        </td>
+                       </tr>
+                    </table>
+
+                <%
+                        }
+                    }
+
                         List<Comment> comments = ObjectifyService.ofy().load().type(Comment.class).ancestor(idea).list();
                         if (comments.size() > 0) {
                             %>
-                            <h3>Comentarios:</h3><br>
+                            <h3>Comentarios:</h3>
                             <%
                         }
                         for (Comment c : comments) {
@@ -117,32 +147,9 @@
                             String commentAuthor = c.getAuthor_id();
                     %>
                  <p><%= commentContent%> <i><%= commentAuthor%></i></p>
-                            <%
-                                }
-                                if (user != null) {
-                                    String voteId = ideaId + "-" + user.getNickname();
-                                    boolean existsVote = ObjectifyService.ofy().load().type(Vote.class).filter("id", voteId).count() != 0;
-                                    if (!existsVote) {
-                            %>
-
-                <table>
-                    <form action="/submitVote" method="post">
-                        <div><input type="submit"  class = "btn btn-success" value="+1" /></div>
-                        <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
-                        <input type="hidden" name="vote" value='1'/>
-                    </form>
-                    <form action="/submitVote" method="post">
-                        <div><input type="submit"  class = "btn btn-danger" value="-1" /></div>
-                        <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
-                        <input type="hidden" name="vote" value='-1'/>
-                    </form>
-                </table>
-
-                                <%
-                                        }
-                                    }
-
-                                %>
+                        <%
+                        }
+                        %>
 
                  <script>
                     function checkform(evt)    {
@@ -157,7 +164,9 @@
                     }
                 </script>
                 <form action="/submitComment" name="frmhot" method="post">
+                    <div><br></div>
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
+                    <div><br></div>
                     <div><input type="button"  class = "btn btn-primary" value="Subir Comentario" onclick="return checkform(event);" /></div>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>

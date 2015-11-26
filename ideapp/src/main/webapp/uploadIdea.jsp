@@ -105,6 +105,7 @@
                     </script>
                     <form action="/submitIdea" name="frmhot" method="post" >
                         <div><textarea name="content" rows="3" cols="60"></textarea></div>
+                        <div><br></div>
                         <div><input type="button" class = "btn btn-primary" value="Subir Idea" onclick="return checkform(event);"/></div>
                     </form>
                 </div>
