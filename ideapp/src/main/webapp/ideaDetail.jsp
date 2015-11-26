@@ -144,15 +144,12 @@
                             myForm.status.focus();
                             condition = false;
                         }
-                        if (!condition) {
-                            event.preventDefault();
-                        }
                         return condition;
                     }
                 </script>
-                <form action="/submitComment" name="frmhot" method="post" onclick="return checkform(event);">
+                <form action="/submitComment" name="frmhot" method="post">
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
-                    <div><input type="button"  class = "btn btn-primary" value="Subir Comentario" /></div>
+                    <div><input type="button"  class = "btn btn-primary" value="Subir Comentario" onclick="return checkform(event);" /></div>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>
                 <%
