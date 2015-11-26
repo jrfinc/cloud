@@ -19,7 +19,7 @@
         <link href="stylesheets/css/sb-admin.css" rel="stylesheet">
         <link href="stylesheets/css/plugins/morris.css" rel="stylesheet">
         <link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <title>Listado de ideas</title>
+        <title>Subir idea</title>
     </head>
 
     <body>
@@ -89,20 +89,24 @@
 
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h1>Últimas ideas</h1>
+                    <h1>Nueva Idea: </h1>
 
-                    <%
-
-                    List<Idea> lastIdeas = ObjectifyService.ofy().load().type(Idea.class).order("-date").limit(8).list();
-                    for (Idea idea : lastIdeas) {
-                        pageContext.setAttribute("idea_content", idea.getContent());
-                        String url = "ideaDetail.jsp?ideaId=" + idea.getId();
-                    %>
-
-                        <a href='<%= url%>'><blockquote>${fn:escapeXml(idea_content)}</blockquote></a>
-                    <%
+                    <script>
+                        function checkform(evt)    {
+                            var myForm = document.frmhot;
+                            var condition = true;
+                            if(myForm.content.value==""){
+                                alert("Una idea no puede ser vacía");
+                                myForm.status.focus();
+                                condition = false;
+                            }
+                            return condition;
                         }
-                    %>
+                    </script>
+                    <form action="/submitIdea" name="frmhot" method="post" >
+                        <div><textarea name="content" rows="3" cols="60"></textarea></div>
+                        <div><input type="button" class = "btn btn-primary" value="Subir Idea" onclick="return checkform(event);"/></div>
+                    </form>
                 </div>
             </div>
         </div>

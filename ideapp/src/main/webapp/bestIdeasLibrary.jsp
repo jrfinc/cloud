@@ -19,7 +19,7 @@
         <link href="stylesheets/css/sb-admin.css" rel="stylesheet">
         <link href="stylesheets/css/plugins/morris.css" rel="stylesheet">
         <link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <title>Listado de ideas</title>
+        <title>Ideas más exitosas</title>
     </head>
 
     <body>
@@ -89,12 +89,12 @@
 
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h1>Últimas ideas</h1>
+                    <h1>Ideas más exitosas</h1>
 
                     <%
 
-                    List<Idea> lastIdeas = ObjectifyService.ofy().load().type(Idea.class).order("-date").limit(8).list();
-                    for (Idea idea : lastIdeas) {
+                    List<Idea> famousIdeas = ObjectifyService.ofy().load().type(Idea.class).order("-score").limit(8).list();
+                    for (Idea idea : famousIdeas) {
                         pageContext.setAttribute("idea_content", idea.getContent());
                         String url = "ideaDetail.jsp?ideaId=" + idea.getId();
                     %>

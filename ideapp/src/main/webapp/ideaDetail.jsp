@@ -72,6 +72,15 @@
                     <li>
                         <a href="/ideaLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Listado de Ideas</a>
                     </li>
+                    <li>
+                        <a href="/bestIdeasLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Ideas más exitosas</a>
+                    </li>
+                    <li>
+                        <a href="/myIdeasLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Mis ideas</a>
+                    </li>
+                    <li>
+                        <a href="/uploadIdea.jsp"><i class="fa fa-fw fa-dashboard"></i> Subir idea</a>
+                    </li>
                 </ul>
             </div>
 
