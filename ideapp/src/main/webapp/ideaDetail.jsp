@@ -167,22 +167,19 @@
                         %>
 
                  <script>
-                    function checkform(evt)    {
+                    function checkForm()    {
                         var myForm = document.frmhot;
-                        var condition = true;
-                        if(myForm.content.value==""){
+                        if(myForm.content.value == null || myForm.content.value.trim() == ""){
                             alert("Un comentario no puede ser vacío");
-                            myForm.status.focus();
-                            condition = false;
+                            return false;
                         }
-                        return condition;
                     }
                 </script>
-                <form action="/submitComment" name="frmhot" method="post">
+                <form action="/submitComment" name="frmhot" onsubmit="return checkForm()" method="post">
                     <div><br></div>
                     <div><textarea name="content" rows="3" cols="60"></textarea></div>
                     <div><br></div>
-                    <div><input type="button"  class = "btn btn-primary" value="Subir Comentario" onclick="return checkform(event);" /></div>
+                    <div><input type="submit" class="btn btn-primary" value="Subir Comentario"/></div>
                     <input type="hidden" name="ideaId" value='<%= ideaId%>'/>
                 </form>
                 <%

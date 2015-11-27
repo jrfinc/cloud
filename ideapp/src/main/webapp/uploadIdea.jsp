@@ -94,7 +94,7 @@
                     <script>
                         function checkForm()    {
                             var myForm = document.frmhot;
-                            if(myForm.content.value == null || myForm.content.value == "" ){
+                            if(myForm.content.value == null || myForm.content.value.trim() == "" ){
                                 alert("Una idea no puede ser vacía");
                                 return false;
                             }
