@@ -63,16 +63,16 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="/ideaLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Listado de Ideas</a>
+                            <a href="/ideaLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Listado de ideas</a>
                         </li>
                         <li>
-                            <a href="/bestIdeasLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Ideas más exitosas</a>
+                            <a href="/bestIdeasLibrary.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> Ideas más exitosas</a>
                         </li>
                         <li>
-                            <a href="/myIdeasLibrary.jsp"><i class="fa fa-fw fa-dashboard"></i> Mis ideas</a>
+                            <a href="/myIdeasLibrary.jsp"><i class="fa fa-fw fa-desktop"></i> Mis ideas</a>
                         </li>
                         <li>
-                            <a href="/uploadIdea.jsp"><i class="fa fa-fw fa-dashboard"></i> Subir idea</a>
+                            <a href="/uploadIdea.jsp"><i class="fa fa-fw fa-edit"></i> Subir idea</a>
                         </li>
                         <%
                             if (!existsSubscription) {
@@ -91,7 +91,7 @@
 
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <h1>Ideas más exitosas</h1>
+                    <h1>Mis ideas</h1>
 
                     <%
 
