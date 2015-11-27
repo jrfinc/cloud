@@ -92,21 +92,18 @@
                     <h1>Nueva Idea: </h1>
 
                     <script>
-                        function checkform(evt)    {
+                        function checkForm()    {
                             var myForm = document.frmhot;
-                            var condition = true;
-                            if(myForm.content.value==""){
+                            if(myForm.content.value == null || myForm.content.value == "" ){
                                 alert("Una idea no puede ser vacía");
-                                myForm.status.focus();
-                                condition = false;
+                                return false;
                             }
-                            return condition;
                         }
                     </script>
-                    <form action="/submitIdea" name="frmhot" method="post" >
+                    <form action="/submitIdea" name="frmhot" onsubmit="return checkForm()" method="post">
                         <div><textarea name="content" rows="3" cols="60"></textarea></div>
                         <div><br></div>
-                        <div><input type="button" class = "btn btn-primary" value="Subir Idea" onclick="return checkform(event);"/></div>
+                        <div><input type="submit" class = "btn btn-primary" value="Subir Idea"/></div>
                     </form>
                 </div>
             </div>
